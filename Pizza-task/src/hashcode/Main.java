@@ -11,7 +11,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
         Path path = Paths.get("./input.txt");
         try {
             List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -27,12 +26,14 @@ public class Main {
             String ind = "";
             ArrayList<Integer> arrOfSum = new ArrayList<>();
             ArrayList<String> index = new ArrayList<>();
-            int opsize = (int)Math.pow(2, secondLine.length);
+            int opsize = (int) Math.pow(2, secondLine.length);
 
-            for (int counter = 1; counter < opsize; counter++){
-                for (int j = 0; j < secondLine.length; j++){
-                /* Check if jth bit in the counter is set
-                    If set then print jth element from arr[] */
+            for (int counter = 1; counter < opsize; counter++) {
+                for (int j = 0; j < secondLine.length; j++) {
+                    /*
+                     * Check if jth bit in the counter is set If set then print jth element from
+                     * arr[]
+                     */
                     if (BigInteger.valueOf(counter).testBit(j)) {
                         sum += Integer.parseInt(secondLine[j]);
                         ind += String.valueOf(j);
@@ -49,7 +50,7 @@ public class Main {
             int max = 0;
             int maxindex = 0;
             for (int i = 0; i < arrOfSum.size(); i++) {
-                if (arrOfSum.get(i) > max){
+                if (arrOfSum.get(i) > max) {
                     max = arrOfSum.get(i);
                     maxindex = arrOfSum.indexOf(max);
                 }
@@ -62,16 +63,15 @@ public class Main {
             }
 
             Path path1 = Paths.get("./output.txt");
-            try(BufferedWriter bw = Files.newBufferedWriter(path1, Charset.defaultCharset())){
+            try (BufferedWriter bw = Files.newBufferedWriter(path1, Charset.defaultCharset())) {
                 bw.write(String.valueOf(len));
                 bw.write("\n");
                 bw.write(String.valueOf(str));
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.err.println("Exception : " + e.getMessage());
             }
             System.out.println(BigInteger.valueOf(10).testBit(2));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.err.println("Exception : " + e.getMessage());
         }
     }
